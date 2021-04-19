@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.People;
+using WebApplication1.Validators;
 
 namespace WebApplication1
 {
@@ -33,7 +34,17 @@ namespace WebApplication1
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    Person person = new Person { Age = 10 };
+                    Person person10 = new Person { Age = 10 };
+                    Person person400 = new Person { Age = 400 };
+
+                    var personValidator = new PersonValidator();
+
+                    var resultsPerson10 = personValidator.Validate(person10);
+                    var resultsPerson400 = personValidator.Validate(person400);
+
+                    Student student = new Student { Age = 900, AverageScore = 8, Course = 9 };
+
+                    var resultsStudent = personValidator.Validate(student);
 
                     await context.Response.WriteAsync("Hello World!");
                 });

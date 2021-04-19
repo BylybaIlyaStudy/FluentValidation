@@ -12,6 +12,11 @@ namespace WebApplication1.Validators
         public PersonValidator()
         {
             RuleFor(x => x.Age).NotEmpty().LessThan(200).WithMessage("Age error");
+
+            RuleFor(x => x).SetInheritanceValidator(v => {
+                v.Add<Adult>(new AdultValidator());
+                v.Add<Student>(new StudentValidator());
+            });
         }
     }
 }
