@@ -8,6 +8,7 @@ namespace WebApplication1.Validators
         public PersonValidator()
         {
             RuleFor(x => x.Age).NotEmpty().LessThan(200).WithMessage("Age error");
+            RuleFor(x => x.Name).NotEmpty().MaximumLength(10).WithMessage("Name error");
 
             RuleFor(x => x).SetInheritanceValidator(v =>
             {
