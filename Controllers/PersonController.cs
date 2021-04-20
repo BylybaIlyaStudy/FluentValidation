@@ -9,19 +9,9 @@ namespace WebApplication1.Controllers
     public class PersonController : Controller
     {
         [HttpPost]
-        public ActionResult Post(PersonDTO personDTO)
+        public ActionResult Post(Person person)
         {
-            Person person = personDTO.Adapt<Person>();
-
-            var validator = new PersonValidator();
-            var results = validator.Validate(person);
-
-            if (results.IsValid)
-            {
-                return Ok();
-            }
-
-            return StatusCode(400);
+            return Ok();
         }
     }
 }

@@ -20,12 +20,13 @@ namespace WebApplication1.Controllers
             var validator = new StudentValidator();
             var results = validator.Validate(student);
 
-            if (results.IsValid)
+            if (!results.IsValid)
             {
-                return Ok();
+                StatusCode(400);
+                return StatusCode(400);
             }
 
-            return StatusCode(400);
+            return Ok();
         }
     }
 }
